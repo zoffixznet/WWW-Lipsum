@@ -40,7 +40,7 @@ sub generate {
     my $did_already_retry = 0;
     my ( $res, $dom );
     GET_LIPSUM: {
-        $res = $self->_ua->post( 'http://lipsum.com/feed/html', {
+        $res = $self->_ua->post( 'https://lipsum.com/feed/html', {
             amount => $self->amount,
             what   => $self->what,
             start  => $self->start ? 1 : 0,
@@ -70,7 +70,7 @@ sub generate {
 
     $self->html
         or return $self->lipsum(
-            join "\n\n", map $_->all_text,
+            join "\n\n", map { my $t = $_->all_text; $t =~ s/^\s+|\s+$//g; $t }
                 $dom->grep(sub{ $_->tag eq 'p'})->each
         );
 

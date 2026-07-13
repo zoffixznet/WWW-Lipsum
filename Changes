@@ -1,5 +1,8 @@
 Revision history for WWW-Lipsum
 
+1.001014  2026-07-12
+        - Use HTTPS to talk to lipsum.com
+
 1.001013  2018-05-18
         - Fix tests with recent Mojos. (Fixes #7)
 
